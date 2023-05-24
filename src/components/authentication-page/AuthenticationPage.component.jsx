@@ -16,7 +16,7 @@ function AuthenticationPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!user) return dispatch(setRoutes(ROUTES.SIGN_IN));
+    if (!user) dispatch(setRoutes(ROUTES.SIGN_IN));
   }, [user])
 
   useEffect(() => {
