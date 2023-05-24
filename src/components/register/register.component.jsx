@@ -1,52 +1,54 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { setRoutes } from '../../store/routes/routes.reducer';
+import { useDispatch } from 'react-redux';
+import { createUserWithFirebase } from '../../utils/firebase/firebase.utils';
+import { ROUTES } from '../../utils/routes/routes.utils';
 import './register.styles.scss';
 
-const Register = ({changeRoute, loadUser}) => {
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [name, setName] = useState('');
+const Register = ({ loadUser}) => {
+  const email = useRef();
+  const password = useRef();
+  const name = useRef();
+  const dispatch = useDispatch();
 
-const onUsernameChange = (event) => {
-    setName(event.target.value);
-};
+  const handleChangeRoutes = () => {
+    dispatch(setRoutes(ROUTES.SIGN_IN));
+  }
 
-const onEmailChange = (event) => {
-    setEmail(event.target.value);
-};
-
-const onPasswordChange = (event) => {
-    setPassword(event.target.value);
-};
-
-const fetchRegister = async() => {
-    const registerFetch = await fetch('https://api-facedetector-76fu.onrender.com/register', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify ({
-            email: email,
-            name: name,
-            password: password
-        })
-    });
-    const response = await registerFetch.json();
-    if(response === "unable to register") return;
-        loadUser(response);
-        changeRoute('faceDetector', true);
-    
-}
-
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+    const namevalue = name.current.value;
+    createUserWithFirebase(emailValue, passwordValue, namevalue);
+  }
 
     return(
-     <div className='register-container'>
-        <div className="login-block">
-            <h1>Register</h1>
-            <input type="text"  placeholder="Name" id="username" onChange={onUsernameChange} />
-            <input type="email"  placeholder="Email" id="email" onChange={onEmailChange}/>
-            <input type="password"  placeholder="Password" id="password" onChange={onPasswordChange}/>
-            <button onClick={fetchRegister}>Register</button>
-            <p onClick={() => changeRoute("signin")}>SIGN-IN</p>
-        </div>
-    </div>
+    <form className='register-container' onSubmit={handleSumbit}>
+      <div className="login-block">
+        <h1>Register</h1>
+        <input 
+          type="text"  
+          placeholder="Name" 
+          id="username"
+          ref={name}  
+        />
+        <input 
+          type="email"  
+          placeholder="Email" 
+          id="email" 
+          ref={email}
+        />
+        <input 
+          type="password"  
+          placeholder="Password" 
+          id="password"
+          ref={password}
+        />
+        <button type='submit'>Register</button>
+        <p onClick={handleChangeRoutes}>SIGN-IN</p>
+      </div>
+    </form>
     )
 };
 

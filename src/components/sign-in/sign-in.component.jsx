@@ -1,49 +1,47 @@
+import { useRef, useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { setRoutes } from '../../store/routes/routes.reducer';
+import { signInWithFirebase } from '../../utils/firebase/firebase.utils';
+import { ROUTES } from '../../utils/routes/routes.utils';
 import './sign-in.styles.scss';
-import { useState} from 'react';
 
-const SignIn = ({changeRoute, loadUser}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const SignIn = () => {
+  const email = useRef();
+  const password = useRef();
+  const dispatch = useDispatch();
 
+  const changeRouteHandler = () => {
+      dispatch(setRoutes(ROUTES.REGISTER));
+  }
 
-    const onUsernameChange = (event) => {
-        setEmail(event.target.value);
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+    signInWithFirebase(emailValue, passwordValue);
+  }
 
-    const onPasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const signInCheck = async() => {
-        const postSignin = await fetch('https://api-facedetector-76fu.onrender.com/signin', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-        const response = await postSignin.json();
-        if(response.id) {
-            loadUser(response);
-            changeRoute('faceDetector', true);
-        }
-    };
-
-
-    
-
-    return(
-     <div className='sign-in'>
-        <div className="login-block">
-            <h1>Sign-in</h1>
-            <input type="email"  placeholder="Email" id="username" onChange={onUsernameChange}/>
-            <input type="password"  placeholder="Password" id="password" onChange={onPasswordChange}/>
-            <button onClick={signInCheck}>Sign-In?</button>
-            <p onClick={() => changeRoute("register")}>REGISTER?</p>
-        </div>
-    </div>
-    )
+  return(
+    <form className='sign-in' onSubmit={handleSubmit}>
+      <div className="login-block">
+        <h1>Sign-in</h1>
+        <input 
+          type="email"  
+          placeholder="Email" 
+          id="username" 
+          ref={email}
+        />
+        <input 
+          type="password"  
+          placeholder="Password" 
+          id="password" 
+          ref={password}
+        />
+        <button type='submit'>Sign-In?</button>
+        <p onClick={changeRouteHandler}>REGISTER?</p>
+      </div>
+    </form>
+  )
 };
 
 export default SignIn;
