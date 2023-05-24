@@ -16,17 +16,16 @@ function AuthenticationPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!user) dispatch(setRoutes(ROUTES.SIGN_IN));
+    if (!user) return;
+    dispatch(setRoutes(ROUTES.FACEDETECTOR));
   }, [user])
 
   useEffect(() => {
       // Subscribe to auth state changes and update the user state variable
       const unsubscribe = authStateChanged(async (user) => {
         if (!user) return dispatch(setUser(null))
-        
         const userDoc = await getDocUser(user);
         dispatch(setUser(userDoc));
-        dispatch(setRoutes(ROUTES.FACEDETECTOR));
       });
       // Return a cleanup function to unsubscribe from auth state changes
       return unsubscribe;
