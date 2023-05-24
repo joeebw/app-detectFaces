@@ -8,10 +8,16 @@ import { ROUTES } from "../../utils/routes/routes.utils"
 import SignIn from "../sign-in/sign-in.component"
 import Register from "../register/register.component"
 import Home from "../home-page/Home.component"
+import { selectUser } from "../../store/user/user.selector"
 
 function AuthenticationPage() {
   const routes = useSelector(selectRoutes);
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!user) return dispatch(routes(ROUTES.SIGN_IN));
+  }, [user])
 
   useEffect(() => {
       // Subscribe to auth state changes and update the user state variable
