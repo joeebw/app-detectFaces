@@ -1,33 +1,50 @@
 .container-faceDetector {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 
-    .faceDetector-row {
-        position: relative;
-        
-        img {
-            width: 710px;
-            height: auto;
-        }
-    
-        .box-boundaring {
-            position: absolute;
-            box-shadow: 0 0 0 3px rgb(72, 198, 230) inset;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            cursor: pointer;
-    
-        }
+  .faceDetector-row {
+    position: relative;
+
+    img {
+      width: 710px;
+      height: auto;
     }
 
-    @media only screen and (max-width: 700px) {
-        .faceDetector-row img {
-            width: 85vw;
-
-        }
+    .box-boundaring {
+      position: absolute;
+      box-shadow: 0 0 0 3px rgb(72, 198, 230) inset;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      cursor: pointer;
     }
 
-    
+    .placeholder-message {
+      width: 710px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(31, 25, 104, 0.1);
+      border: 2px dashed rgb(31, 25, 104);
+      border-radius: 8px;
+      color: rgb(31, 25, 104);
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .faceDetector-row img {
+      width: 85vw;
+    }
+
+    .faceDetector-row .placeholder-message {
+      width: 85vw;
+      height: 300px;
+      font-size: 1rem;
+    }
+  }
 }
