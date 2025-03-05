@@ -12,7 +12,8 @@
     display: flex;
     background-color: rgb(31, 25, 104);
     padding: 25px 30px;
-    border-radius: 7px;
+    border-radius: 15px;
+    gap: 6px;
 
     input {
       width: 450px;
@@ -25,7 +26,7 @@
       padding: 0 50px;
       border: none;
       cursor: pointer;
-      margin-right: 5px;
+      border-radius: 5px;
     }
 
     button:hover {
@@ -57,8 +58,8 @@
     }
 
     .input-row input {
-      width: 65vw;
-      height: 20px;
+      width: 85vw;
+      height: 25px;
     }
 
     .input-row input:focus {
@@ -68,12 +69,8 @@
     }
 
     .input-row button {
-      padding: 0px 8px;
+      padding: 7px 20px;
       margin-right: 0;
-    }
-
-    .input-row button[type="button"] {
-      padding: 0px 8px;
     }
   }
 }

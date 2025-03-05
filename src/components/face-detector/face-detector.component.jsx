@@ -48,7 +48,7 @@ const FaceDetector = () => {
         )}
         {!showFaces && (
           <div className="placeholder-message">
-            Ingresa una URL de imagen con rostros para detectar
+            Enter an image URL with faces to detect
           </div>
         )}
       </div>

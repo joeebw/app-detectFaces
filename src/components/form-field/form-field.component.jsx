@@ -24,11 +24,11 @@ const FormField = ({ isProcessing = false, clearImageAndBox }) => {
 
   return (
     <div className="container-form">
-      <h3>I can detect faces in your picture. Put an url and click detect. </h3>
+      <h3>I can detect faces in your picture. Enter a URL and click detect.</h3>
       <form className="input-row" onSubmit={onButtonSubmit}>
         <input
           type="text"
-          placeholder="Put the url"
+          placeholder="Enter image URL with faces to detect"
           ref={input}
           disabled={isProcessing}
         />
