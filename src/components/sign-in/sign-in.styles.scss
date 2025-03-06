@@ -4,6 +4,13 @@
   justify-content: center;
   align-items: center;
 
+  .sign-in-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+
   .login-block {
     display: flex;
     flex-direction: column;
@@ -67,8 +74,7 @@
   }
 
   .login-block button {
-    width: 40%;
-    height: 40px;
+    padding: 10px 30px;
     background: hsl(227, 54%, 39%, 0.75);
     box-sizing: border-box;
     border-radius: 5px;
