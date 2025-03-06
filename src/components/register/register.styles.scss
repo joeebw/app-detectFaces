@@ -1,4 +1,4 @@
-.register-container {
+.register {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -47,6 +47,29 @@
   .login-block input:active,
   .login-block input:focus {
     border: 1px solid #392e8c;
+  }
+
+  .error-message {
+    color: #ff3333;
+    font-size: 0.8rem;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+  }
+
+  .auth-error-message {
+    color: #ff3333;
+    font-size: 0.9rem;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
   }
 
   .login-block button {
