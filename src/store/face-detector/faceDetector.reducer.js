@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const FACEDETECTOR_INITIAL_STATE = {
   imgUrl:
-    "https://images.unsplash.com/photo-1672719699796-ef70ba746ca8?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1654430343142-2d6157e69887?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   box: [],
 };
 
